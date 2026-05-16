@@ -1,10 +1,9 @@
 {
-  "name": "Electrical Engineer Planner 2026",
-  "short_name": "EE Planner",
-  "description": "Project Planner & Dashboard untuk Calon Engineer Hebat!",
-  "start_url": "./index.html",
+  "name": "Fairuz Planner",
+  "short_name": "Fairuz",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#e0f7fa",
+  "background_color": "#c3e8ff",
   "theme_color": "#c3e8ff",
   "icons": [
     {
