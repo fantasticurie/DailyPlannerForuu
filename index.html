@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electrical Engineer Planner 2026</title>
+    <title>Fairuz Planner</title>
     
     <meta name="theme-color" content="#c3e8ff">
     <link rel="manifest" href="manifest.json">
@@ -12,7 +12,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@400;500;600;700&family=Outfit:wght@700;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -43,57 +43,110 @@
             font-family: 'Nunito', sans-serif;
         }
 
-        /* --- SPLASH SCREEN INTRO (ADDED FEATURE) --- */
+        /* --- SPLASH SCREEN INTRO (DIPERBAGUS) --- */
         #intro-splash {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: linear-gradient(135deg, #101820 0%, #0984e3 100%);
-            z-index: 99999; /* Pastikan selalu paling atas */
+            background: radial-gradient(circle at center, #0984e3 0%, #101820 100%);
+            z-index: 99999; 
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
-            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+            overflow: hidden;
         }
         
         .intro-icon {
-            font-size: 5rem;
+            font-size: 6rem;
             color: #00cec9;
-            margin-bottom: 20px;
-            animation: pulse-glow 1.5s infinite;
+            margin-bottom: 25px;
+            cursor: pointer; /* Pointer interaktif */
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulse-glow-intro 2s infinite;
+            position: relative;
+            z-index: 10;
         }
+        
+        .intro-icon:hover {
+            transform: scale(1.15) rotate(5deg);
+            animation: none;
+            color: #81ecec;
+            text-shadow: 0 0 40px rgba(129, 236, 236, 0.8);
+        }
+        
+        /* Tooltip klik ikon */
+        .intro-icon::after {
+            content: "Tap to Start!";
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #81ecec;
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+        }
+        .intro-icon:hover::after { opacity: 1; }
 
         .intro-title {
-            font-family: 'Nunito', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
             text-align: center;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            padding: 0 20px;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #81ecec, #00cec9, #74b9ff);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            animation: slide-up 1s ease-out;
         }
 
         .intro-subtitle {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            font-weight: 300;
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
             text-align: center;
-            color: #81ecec;
-            max-width: 80%;
-            line-height: 1.5;
+            color: #dfe6e9;
+            line-height: 1.3;
+            animation: fade-in 1.5s ease-out 0.5s both;
         }
 
-        @keyframes pulse-glow {
-            0% { transform: scale(1); text-shadow: 0 0 10px rgba(0, 206, 201, 0.5); }
-            50% { transform: scale(1.15); text-shadow: 0 0 30px rgba(0, 206, 201, 1); }
-            100% { transform: scale(1); text-shadow: 0 0 10px rgba(0, 206, 201, 0.5); }
+        .intro-bg-glow {
+            position: absolute;
+            width: 300px; height: 300px;
+            background: rgba(0, 206, 201, 0.2);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 1;
+            animation: breath 4s infinite alternate;
+        }
+
+        @keyframes pulse-glow-intro {
+            0% { transform: scale(1); text-shadow: 0 0 20px rgba(0, 206, 201, 0.4); }
+            50% { transform: scale(1.05); text-shadow: 0 0 40px rgba(0, 206, 201, 0.8); }
+            100% { transform: scale(1); text-shadow: 0 0 20px rgba(0, 206, 201, 0.4); }
+        }
+        @keyframes slide-up {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes breath {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 1; }
         }
         /* --- END OF SPLASH SCREEN INTRO --- */
-
 
         /* --- Header Glowing --- */
         .header-glow {
@@ -249,7 +302,6 @@
             box-shadow: 0 2px 10px rgba(9, 132, 227, 0.4);
         }
         
-        /* GAYA KHUSUS HARI LIBUR & MINGGU */
         .calendar-day.holiday {
             color: #e74c3c !important; 
             font-weight: 800;
@@ -349,27 +401,29 @@
         #notif-status:hover { transform: scale(1.1); }
         
         .menu-btn-giant {
-            width: 100%;
+            flex: 1 1 250px;
             max-width: 300px;
             height: 150px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             gap: 15px;
             border-radius: 25px;
             cursor: pointer;
+            text-align: center;
         }
-        .menu-btn-giant i { font-size: 3rem; }
+        .menu-btn-giant i { font-size: 2.8rem; }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
     <div id="intro-splash">
-        <i class="fas fa-microchip intro-icon"></i>
-        <h1 class="intro-title">Welcome, Fairuz.</h1>
-        <p class="intro-subtitle">I made this for uu..<br>By Tasya <i class="fas fa-bolt text-yellow-400"></i> & <i class="fas fa-heart text-pink-400"></i> exclusively for you.</p>
+        <div class="intro-bg-glow"></div>
+        <i class="fas fa-microchip intro-icon" onclick="skipIntro()"></i>
+        <h1 class="intro-title">Fairuz Planner</h1>
+        <p class="intro-subtitle mt-2">I made this for uu..<br><span class="text-xl">By Tasya <i class="fas fa-bolt text-yellow-400 mx-1"></i>&<i class="fas fa-heart text-pink-400 mx-1"></i> exclusively for you.</span></p>
     </div>
 
     <div class="bg-animation-container">
@@ -392,14 +446,20 @@
             </div>
             
             <h1 class="text-4xl md:text-5xl font-extrabold header-glow mb-3" id="main-title">
-                Code Your Own Future
+                Fairuz Planner
             </h1>
             <p class="text-gray-600 font-medium text-lg" id="main-subtitle">
                 <i class="fas fa-microchip text-blue-500 mr-2"></i> Electrical Engineer Dashboard
             </p>
         </header>
 
-        <section id="home-section" class="flex flex-col md:flex-row items-center justify-center gap-8 mt-10">
+        <section id="home-section" class="flex flex-wrap items-center justify-center gap-6 mt-10">
+            
+            <div class="glass-card menu-btn-giant bg-white bg-opacity-80 border-4 border-indigo-200 hover:border-indigo-400 text-indigo-600" onclick="showSection('schedule-section')">
+                <i class="fas fa-calendar-week text-indigo-500"></i>
+                <span class="font-extrabold font-nunito">Jadwal Kuliah & Kuis</span>
+            </div>
+
             <div class="glass-card menu-btn-giant bg-white bg-opacity-80 border-4 border-blue-200 hover:border-blue-400 text-blue-600" onclick="showSection('planner-section')">
                 <i class="far fa-calendar-alt text-blue-500"></i>
                 <span class="font-extrabold font-nunito">Project Planner</span>
@@ -411,8 +471,82 @@
             </div>
         </section>
 
-        <main id="finance-section" class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden">
+        <main id="schedule-section" class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden">
             
+            <section class="glass-card p-5 flex flex-col md:col-span-1 border-2 border-indigo-300">
+                <h2 class="text-xl font-bold mb-4 text-indigo-600 flex items-center">
+                    <i class="fas fa-folder-plus mr-2 text-indigo-400"></i> Tambah Jadwal
+                </h2>
+                <form id="form-schedule" class="flex flex-col gap-3">
+                    <div>
+                        <label class="text-xs font-bold text-gray-500 ml-1">Kategori</label>
+                        <select id="input-sch-type" required class="text-sm mt-1">
+                            <option value="Matkul">📚 Mata Kuliah</option>
+                            <option value="Praktikum">🛠️ Praktikum</option>
+                            <option value="Kuis">📝 Kuis / Ujian</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="text-xs font-bold text-gray-500 ml-1">Nama Matkul / Topik</label>
+                        <input type="text" id="input-sch-name" placeholder="Cth: Rangkaian Listrik" required class="text-sm mt-1">
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold text-gray-500 ml-1">Hari</label>
+                        <select id="input-sch-day" required class="text-sm mt-1">
+                            <option value="Senin">Senin</option>
+                            <option value="Selasa">Selasa</option>
+                            <option value="Rabu">Rabu</option>
+                            <option value="Kamis">Kamis</option>
+                            <option value="Jumat">Jumat</option>
+                            <option value="Sabtu">Sabtu</option>
+                            <option value="Minggu">Minggu</option>
+                        </select>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <div class="w-1/2">
+                            <label class="text-[10px] text-gray-500 font-bold ml-1">Jam Mulai</label>
+                            <input type="time" id="input-sch-start" required class="text-sm">
+                        </div>
+                        <div class="w-1/2">
+                            <label class="text-[10px] text-gray-500 font-bold ml-1">Jam Selesai</label>
+                            <input type="time" id="input-sch-end" required class="text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold text-gray-500 ml-1">Ruangan / Lab</label>
+                        <input type="text" id="input-sch-room" placeholder="Cth: Lab ELKA / RK A" required class="text-sm mt-1">
+                    </div>
+
+                    <button type="submit" class="btn-cool mt-3 !bg-indigo-500 !shadow-indigo-300"><i class="fas fa-save"></i> Simpan Jadwal</button>
+                </form>
+            </section>
+
+            <section class="glass-card p-5 flex flex-col md:col-span-2 min-h-[500px]">
+                <h2 class="text-xl font-bold mb-4 text-indigo-600 flex items-center">
+                    <i class="fas fa-clipboard-list mr-2 text-indigo-400"></i> Daftar Jadwal Mingguan
+                </h2>
+                
+                <div class="flex gap-2 mb-4 overflow-x-auto pb-2 scrollbar-hide" id="day-filters">
+                    <button class="px-4 py-1.5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold whitespace-nowrap shadow-sm hover:bg-indigo-200 transition" onclick="filterSchedule('All')" id="btn-filter-All">Semua</button>
+                    <button class="px-4 py-1.5 rounded-full bg-white bg-opacity-50 border border-gray-200 text-gray-600 text-xs font-bold whitespace-nowrap hover:bg-indigo-50 transition" onclick="filterSchedule('Senin')" id="btn-filter-Senin">Senin</button>
+                    <button class="px-4 py-1.5 rounded-full bg-white bg-opacity-50 border border-gray-200 text-gray-600 text-xs font-bold whitespace-nowrap hover:bg-indigo-50 transition" onclick="filterSchedule('Selasa')" id="btn-filter-Selasa">Selasa</button>
+                    <button class="px-4 py-1.5 rounded-full bg-white bg-opacity-50 border border-gray-200 text-gray-600 text-xs font-bold whitespace-nowrap hover:bg-indigo-50 transition" onclick="filterSchedule('Rabu')" id="btn-filter-Rabu">Rabu</button>
+                    <button class="px-4 py-1.5 rounded-full bg-white bg-opacity-50 border border-gray-200 text-gray-600 text-xs font-bold whitespace-nowrap hover:bg-indigo-50 transition" onclick="filterSchedule('Kamis')" id="btn-filter-Kamis">Kamis</button>
+                    <button class="px-4 py-1.5 rounded-full bg-white bg-opacity-50 border border-gray-200 text-gray-600 text-xs font-bold whitespace-nowrap hover:bg-indigo-50 transition" onclick="filterSchedule('Jumat')" id="btn-filter-Jumat">Jumat</button>
+                    <button class="px-4 py-1.5 rounded-full bg-white bg-opacity-50 border border-gray-200 text-gray-600 text-xs font-bold whitespace-nowrap hover:bg-indigo-50 transition" onclick="filterSchedule('Sabtu')" id="btn-filter-Sabtu">Sabtu</button>
+                </div>
+
+                <div class="flex-grow overflow-y-auto pr-2 grid grid-cols-1 md:grid-cols-2 gap-4 content-start" id="schedule-list">
+                    </div>
+            </section>
+        </main>
+
+
+        <main id="finance-section" class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden">
             <section class="glass-card p-6 flex flex-col relative overflow-hidden">
                 <div class="absolute -right-10 -top-10 opacity-10 text-9xl text-cyan-500"><i class="fas fa-coins"></i></div>
                 <h2 class="text-2xl font-bold mb-4 text-cyan-600 flex items-center">
@@ -480,6 +614,7 @@
             </section>
         </main>
 
+
         <main id="planner-section" class="grid grid-cols-1 lg:grid-cols-3 gap-6 hidden">
             
             <div class="lg:col-span-1 flex flex-col gap-6">
@@ -498,14 +633,14 @@
 
                     <div class="mt-4 pt-4 border-t border-blue-200">
                         <h3 class="font-bold text-sm text-blue-500 mb-2">
-                            <i class="far fa-calendar-check mr-1"></i> Jadwal: <span id="selected-date-display" class="text-gray-600 font-medium">...</span>
+                            <i class="far fa-calendar-check mr-1"></i> Jadwal/Event: <span id="selected-date-display" class="text-gray-600 font-medium">...</span>
                         </h3>
                         <div id="calendar-event-list-below" class="max-h-32 overflow-y-auto mb-3 pr-1">
                             </div>
                         <form id="form-calendar-event" class="flex flex-col gap-2">
                             <div class="flex gap-2">
                                 <input type="time" id="input-cal-time" class="w-1/3 text-xs" required>
-                                <input type="text" id="input-cal-event" placeholder="Nama acara/kegiatan..." required class="w-2/3 text-xs">
+                                <input type="text" id="input-cal-event" placeholder="Nama event (Luar matkul)..." required class="w-2/3 text-xs">
                                 <button type="submit" class="btn-cool px-3 py-1"><i class="fas fa-plus"></i></button>
                             </div>
                         </form>
@@ -514,12 +649,12 @@
 
                 <section class="glass-card p-5 flex flex-col flex-grow min-h-[500px]">
                     <h2 class="text-xl font-bold mb-1 text-blue-500 flex items-center">
-                        <i class="fas fa-list-check mr-3 text-cyan-500"></i> Daily Planner
+                        <i class="fas fa-list-check mr-3 text-cyan-500"></i> Daily Task
                     </h2>
                     <p class="text-xs text-gray-500 mb-4" id="daily-date-display">Today: ...</p>
                     <div class="flex-grow overflow-y-auto mb-4 pr-1" id="daily-list"></div>
                     <form id="form-daily" class="mt-auto flex flex-col gap-2">
-                        <input type="text" id="input-daily" placeholder="Fokus/Target hari ini..." required>
+                        <input type="text" id="input-daily" placeholder="Fokus tugas hari ini..." required>
                         <div class="flex gap-2">
                             <input type="date" id="input-daily-date" class="w-1/2 text-xs">
                             <input type="time" id="input-daily-time" class="w-1/3 text-xs">
@@ -645,26 +780,32 @@
     </div>
 
     <footer class="mt-auto py-6 text-center text-gray-500 text-sm font-medium">
-        <p>&copy; 2026 byl.tasya | Engineered with <i class="fas fa-heart text-blue-400"></i> & <i class="fas fa-microchip text-cyan-600"></i></p>
+        <p>&copy; 2026 Fairuz Planner | Engineered with <i class="fas fa-heart text-blue-400"></i> & <i class="fas fa-microchip text-cyan-600"></i></p>
     </footer>
 
     <script>
-        // --- LOGIC HILANGKAN SPLASH SCREEN SETELAH LOAD ---
+        // --- LOGIC HILANGKAN SPLASH SCREEN SETELAH LOAD ATAU DIKLIK ---
+        let introTimeout;
         window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('intro-splash');
-                if (splash) {
-                    splash.style.opacity = '0';
-                    splash.style.visibility = 'hidden';
-                    setTimeout(() => splash.remove(), 800); 
-                }
+            introTimeout = setTimeout(() => {
+                skipIntro();
             }, 3500); 
         });
 
-        // Menggunakan key penyimpanan yang berbeda agar tidak bentrok dengan planner sebelumnya
+        window.skipIntro = () => {
+            clearTimeout(introTimeout);
+            const splash = document.getElementById('intro-splash');
+            if (splash) {
+                splash.style.opacity = '0';
+                splash.style.visibility = 'hidden';
+                setTimeout(() => splash.remove(), 800); 
+            }
+        };
+
         const STORAGE_KEY = 'planner_2026_fairuz_data';
         
         const defaultData = {
+            schedule: [], // Data baru untuk jadwal matkul/praktikum
             goals: [
                 { id: Date.now()+1, text: "Sukses rakit project mikrokontroler" },
                 { id: Date.now()+2, text: "Lulus kuliah dengan IPK Tinggi" }
@@ -697,6 +838,8 @@
 
         let appData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultData;
 
+        // Fallbacks for older data
+        if(!appData.schedule) appData.schedule = defaultData.schedule;
         if(!appData.photos) appData.photos = defaultData.photos;
         if(!appData.motivation) appData.motivation = defaultData.motivation;
         if(!appData.inspirationDesc) appData.inspirationDesc = defaultData.inspirationDesc;
@@ -719,11 +862,12 @@
             renderAll(); 
         };
 
-        // --- SISTEM NAVIGASI MENU ---
+        // --- SISTEM NAVIGASI MENU (SEKARANG ADA 3) ---
         window.showSection = (sectionId) => {
             document.getElementById('home-section').classList.add('hidden');
             document.getElementById('planner-section').classList.add('hidden');
             document.getElementById('finance-section').classList.add('hidden');
+            document.getElementById('schedule-section').classList.add('hidden'); // Menu Baru
             
             document.getElementById(sectionId).classList.remove('hidden');
             
@@ -733,16 +877,20 @@
 
             if (sectionId === 'home-section') {
                 btnBack.classList.add('hidden');
-                mainTitle.innerText = "Code Your Own Future";
+                mainTitle.innerText = "Fairuz Planner";
                 mainSubtitle.innerHTML = '<i class="fas fa-microchip text-blue-500 mr-2"></i> Electrical Engineer Dashboard';
             } else if (sectionId === 'planner-section') {
                 btnBack.classList.remove('hidden');
-                mainTitle.innerText = "My Project Planner";
+                mainTitle.innerText = "Project Planner";
                 mainSubtitle.innerHTML = '<i class="far fa-calendar-check text-cyan-500 mr-2"></i> Jadwal & Target Kuliah';
             } else if (sectionId === 'finance-section') {
                 btnBack.classList.remove('hidden');
                 mainTitle.innerText = "Keuangan Anak Kos";
                 mainSubtitle.innerHTML = '<i class="fas fa-wallet text-cyan-500 mr-2"></i> Tracker Pengeluaran Komponen & Kos';
+            } else if (sectionId === 'schedule-section') {
+                btnBack.classList.remove('hidden');
+                mainTitle.innerText = "Jadwal Perkuliahan";
+                mainSubtitle.innerHTML = '<i class="fas fa-calendar-week text-indigo-500 mr-2"></i> Matkul, Praktikum & Kuis';
             }
         };
 
@@ -835,7 +983,7 @@
             if (appData.calendarEvents[currentDate]) {
                 appData.calendarEvents[currentDate].forEach(ev => {
                     if (ev.time === currentTime && !ev.notified) {
-                        triggerAlarm("📅 Jadwal Kalender!", ev.text);
+                        triggerAlarm("📅 Jadwal Event!", ev.text);
                         ev.notified = true;
                         dataChanged = true;
                     }
@@ -857,7 +1005,110 @@
         setInterval(checkAlarms, 10000); 
         updateNotifIcon();
 
-        // --- RENDER LOGIC PLANNER ---
+        // --- RENDER LOGIC JADWAL MATKUL (BARU) ---
+        let currentScheduleFilter = 'All';
+
+        window.filterSchedule = (day) => {
+            currentScheduleFilter = day;
+            
+            // Update UI Button active state
+            const days = ['All', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            days.forEach(d => {
+                const btn = document.getElementById(`btn-filter-${d}`);
+                if (btn) {
+                    if (d === day) {
+                        btn.className = "px-4 py-1.5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold whitespace-nowrap shadow-sm hover:bg-indigo-200 transition";
+                    } else {
+                        btn.className = "px-4 py-1.5 rounded-full bg-white bg-opacity-50 border border-gray-200 text-gray-600 text-xs font-bold whitespace-nowrap hover:bg-indigo-50 transition";
+                    }
+                }
+            });
+
+            renderSchedule();
+        };
+
+        const renderSchedule = () => {
+            const container = document.getElementById('schedule-list');
+            container.innerHTML = '';
+
+            let filteredSchedule = appData.schedule;
+            if (currentScheduleFilter !== 'All') {
+                filteredSchedule = appData.schedule.filter(item => item.day === currentScheduleFilter);
+            }
+
+            // Sort by day order, then by time
+            const dayOrder = { "Senin": 1, "Selasa": 2, "Rabu": 3, "Kamis": 4, "Jumat": 5, "Sabtu": 6, "Minggu": 7 };
+            filteredSchedule.sort((a, b) => {
+                if (dayOrder[a.day] !== dayOrder[b.day]) return dayOrder[a.day] - dayOrder[b.day];
+                return a.start.localeCompare(b.start);
+            });
+
+            if (filteredSchedule.length === 0) {
+                container.innerHTML = `<p class="text-sm text-gray-400 italic md:col-span-2">Tidak ada jadwal untuk ${currentScheduleFilter === 'All' ? 'saat ini' : 'hari ' + currentScheduleFilter}.</p>`;
+                return;
+            }
+
+            filteredSchedule.forEach(item => {
+                let badgeColor = 'bg-blue-100 text-blue-700';
+                let icon = 'fas fa-book';
+                
+                if(item.type === 'Praktikum') {
+                    badgeColor = 'bg-orange-100 text-orange-700';
+                    icon = 'fas fa-tools';
+                } else if(item.type === 'Kuis') {
+                    badgeColor = 'bg-red-100 text-red-700';
+                    icon = 'fas fa-pen-alt';
+                }
+
+                container.innerHTML += `
+                    <div class="bg-white bg-opacity-80 border border-indigo-100 p-4 rounded-xl relative shadow-sm hover:shadow-md transition group h-fit">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-[10px] font-bold px-2 py-1 rounded-md uppercase ${badgeColor}"><i class="${icon} mr-1"></i> ${item.type}</span>
+                            <span class="text-[11px] font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded">${item.day}</span>
+                        </div>
+                        <h4 class="font-bold text-indigo-900 text-sm mb-1 pr-6 leading-tight">${item.name}</h4>
+                        <div class="flex flex-col gap-1 mt-2">
+                            <span class="text-xs text-gray-600 font-medium"><i class="far fa-clock text-indigo-400 w-4 text-center"></i> ${item.start} - ${item.end}</span>
+                            <span class="text-xs text-gray-600 font-medium"><i class="fas fa-map-marker-alt text-red-400 w-4 text-center"></i> ${item.room}</span>
+                        </div>
+                        <button onclick="deleteItem('schedule', ${item.id})" class="absolute top-4 right-4 text-red-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+            });
+        };
+
+        // Form Submit untuk Jadwal
+        document.getElementById('form-schedule').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const type = document.getElementById('input-sch-type').value;
+            const name = document.getElementById('input-sch-name').value;
+            const day = document.getElementById('input-sch-day').value;
+            const start = document.getElementById('input-sch-start').value;
+            const end = document.getElementById('input-sch-end').value;
+            const room = document.getElementById('input-sch-room').value;
+
+            if (name && start && end) {
+                appData.schedule.push({
+                    id: Date.now(),
+                    type: type,
+                    name: name,
+                    day: day,
+                    start: start,
+                    end: end,
+                    room: room || 'TBA'
+                });
+                
+                document.getElementById('input-sch-name').value = '';
+                document.getElementById('input-sch-room').value = '';
+                // Optional: reset jam
+                
+                saveData();
+                filterSchedule('All'); // otomatis kembali liat semua
+            }
+        });
+
+
+        // --- RENDER LOGIC PLANNER LAINNYA ---
         const renderGoals = () => {
             const container = document.getElementById('goals-list');
             container.innerHTML = appData.goals.length === 0 ? '<p class="text-sm text-gray-400">Belum ada target.</p>' : '';
@@ -1361,6 +1612,7 @@
         });
 
         const renderAll = () => {
+            renderSchedule();
             renderGoals();
             renderDaily();
             renderCourseOrg();
