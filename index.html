@@ -43,6 +43,58 @@
             font-family: 'Nunito', sans-serif;
         }
 
+        /* --- SPLASH SCREEN INTRO (ADDED FEATURE) --- */
+        #intro-splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #101820 0%, #0984e3 100%);
+            z-index: 99999; /* Pastikan selalu paling atas */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+        
+        .intro-icon {
+            font-size: 5rem;
+            color: #00cec9;
+            margin-bottom: 20px;
+            animation: pulse-glow 1.5s infinite;
+        }
+
+        .intro-title {
+            font-family: 'Nunito', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            padding: 0 20px;
+        }
+
+        .intro-subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            text-align: center;
+            color: #81ecec;
+            max-width: 80%;
+            line-height: 1.5;
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(1); text-shadow: 0 0 10px rgba(0, 206, 201, 0.5); }
+            50% { transform: scale(1.15); text-shadow: 0 0 30px rgba(0, 206, 201, 1); }
+            100% { transform: scale(1); text-shadow: 0 0 10px rgba(0, 206, 201, 0.5); }
+        }
+        /* --- END OF SPLASH SCREEN INTRO --- */
+
+
         /* --- Header Glowing --- */
         .header-glow {
             background: linear-gradient(to right, #0984e3, #00cec9, #74b9ff);
@@ -313,6 +365,12 @@
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
+
+    <div id="intro-splash">
+        <i class="fas fa-microchip intro-icon"></i>
+        <h1 class="intro-title">Welcome, Future Engineer.</h1>
+        <p class="intro-subtitle">System Initialized.<br>Engineered with <i class="fas fa-bolt text-yellow-400"></i> & <i class="fas fa-heart text-pink-400"></i> exclusively for you.</p>
+    </div>
 
     <div class="bg-animation-container">
         <i class="fas fa-bolt anim-element float-star anim-1"></i>
@@ -591,6 +649,18 @@
     </footer>
 
     <script>
+        // --- LOGIC HILANGKAN SPLASH SCREEN SETELAH LOAD ---
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('intro-splash');
+                if (splash) {
+                    splash.style.opacity = '0';
+                    splash.style.visibility = 'hidden';
+                    setTimeout(() => splash.remove(), 800); 
+                }
+            }, 3500); 
+        });
+
         // Menggunakan key penyimpanan yang berbeda agar tidak bentrok dengan planner sebelumnya
         const STORAGE_KEY = 'planner_2026_fairuz_data';
         
